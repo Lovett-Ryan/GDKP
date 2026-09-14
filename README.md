@@ -277,7 +277,7 @@ The public source of truth is `.agents/`:
 
 Every core skill has a `SKILL.md` and `agents/openai.yaml`. Shared rules live once under `.agents/references/`; skill-specific material stays with its owning skill.
 
-The public repository also contains English documentation, regression tests, this README, and the project license. See [Development](docs/development.md) for the complete release layout.
+The public repository also contains English documentation, this README, and the project license. See [Development](docs/development.md) for the complete release layout.
 
 ## Core skills
 
@@ -322,13 +322,6 @@ Validate the canonical bundle:
 ```bash
 PYTHONDONTWRITEBYTECODE=1 \
 python3 .agents/scripts/validate_bundle.py .agents
-```
-
-Run the regression suite:
-
-```bash
-PYTHONDONTWRITEBYTECODE=1 \
-python3 -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
 The validator checks the core inventory, required skill metadata, shared references, relative links, content constraints, UI metadata, synchronized versions, and manifest integrity.

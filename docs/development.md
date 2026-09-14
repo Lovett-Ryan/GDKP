@@ -15,9 +15,6 @@ GDKP/
 │   └── skills/                   # The 13 core Codex skills
 ├── docs/                         # English documentation
 │   └── *.md
-├── tests/
-│   ├── fixtures/
-│   └── test_scripts.py
 ├── LICENSE
 └── README.md
 ```
@@ -35,13 +32,6 @@ Validate the canonical bundle:
 ```bash
 PYTHONDONTWRITEBYTECODE=1 \
 python3 .agents/scripts/validate_bundle.py .agents
-```
-
-Run the regression suite:
-
-```bash
-PYTHONDONTWRITEBYTECODE=1 \
-python3 -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
 Validate individual workflow artifacts when needed:
@@ -90,9 +80,8 @@ The destination must not already exist. This prevents an update from silently mi
 2. Keep each skill focused on one responsibility.
 3. Update a skill's description whenever its trigger or boundary changes.
 4. Put shared contracts in `.agents/references/`; keep skill-specific material inside that skill.
-5. Add or update regression fixtures for deterministic behavior changes.
-6. Run the bundle validator and full test suite before submitting a change.
-7. Rebuild and verify the release manifest for every published snapshot.
+5. Run the bundle validator before submitting a change.
+6. Rebuild and verify the release manifest for every published snapshot.
 
 ## License
 
