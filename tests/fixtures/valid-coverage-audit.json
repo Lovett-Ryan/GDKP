@@ -1,0 +1,121 @@
+{
+  "coverage_audit": {
+    "project_id": "prj_01991d8e-1234-7abc-8def-1234567890ab",
+    "status": "coverage_verified",
+    "coverage_profile": {
+      "mode": "coverage_first",
+      "breadth": "broad_field_map"
+    },
+    "scope_decisions": [
+      {
+        "decision_id": "scope-1",
+        "raw_fragment_ref": "conversation:user:goal",
+        "normalized_clause": "Keep the broad field visible while mastering selected foundations.",
+        "transformation": "preserve",
+        "authority": {
+          "kind": "user",
+          "ref": "conversation:user:goal"
+        }
+      },
+      {
+        "decision_id": "scope-2",
+        "raw_fragment_ref": "conversation:user:boundary",
+        "normalized_clause": "Defer production-scale systems while preserving their place in the map.",
+        "transformation": "narrow",
+        "authority": {
+          "kind": "user",
+          "ref": "conversation:user:boundary"
+        }
+      }
+    ],
+    "baseline": {
+      "baseline_id": "baseline-1",
+      "project_id": "prj_01991d8e-1234-7abc-8def-1234567890ab",
+      "status": "verified",
+      "sources": [
+        {
+          "source_id": "source-1",
+          "role": "structural_baseline",
+          "status": "admitted"
+        }
+      ],
+      "topics": [
+        {
+          "topic_id": "topic-math",
+          "title": "Mathematical foundations",
+          "importance": "core",
+          "dependency_ids": []
+        },
+        {
+          "topic_id": "topic-models",
+          "title": "Foundational models",
+          "importance": "core",
+          "dependency_ids": [
+            "topic-math"
+          ]
+        },
+        {
+          "topic_id": "topic-systems",
+          "title": "Production-scale systems",
+          "importance": "specialized",
+          "dependency_ids": [
+            "topic-models"
+          ]
+        }
+      ]
+    },
+    "coverage_contract": {
+      "project_id": "prj_01991d8e-1234-7abc-8def-1234567890ab",
+      "baseline_id": "baseline-1",
+      "breadth": "broad_field_map",
+      "completeness_definition": "Every baseline topic remains visible or has an accountable omission.",
+      "status": "confirmed"
+    },
+    "matrix": {
+      "baseline_id": "baseline-1",
+      "project_id": "prj_01991d8e-1234-7abc-8def-1234567890ab",
+      "mappings": [
+        {
+          "topic_id": "topic-math",
+          "disposition": "understanding",
+          "target_refs": [
+            "framework:foundations"
+          ],
+          "omission_id": null
+        },
+        {
+          "topic_id": "topic-models",
+          "disposition": "mastery",
+          "target_refs": [
+            "framework:models"
+          ],
+          "omission_id": null
+        },
+        {
+          "topic_id": "topic-systems",
+          "disposition": "deferred",
+          "target_refs": [],
+          "omission_id": "omission-systems"
+        }
+      ]
+    },
+    "omission_ledger": {
+      "baseline_id": "baseline-1",
+      "project_id": "prj_01991d8e-1234-7abc-8def-1234567890ab",
+      "omissions": [
+        {
+          "omission_id": "omission-systems",
+          "topic_id": "topic-systems",
+          "disposition": "deferred",
+          "reason": "The user excluded production implementation from the initial learning cycle.",
+          "learner_impact": "The learner will recognize the branch but will not be assessed on operating it.",
+          "future_route": "Reopen after foundational model mastery.",
+          "authority": {
+            "kind": "user",
+            "ref": "conversation:user:boundary"
+          }
+        }
+      ]
+    }
+  }
+}

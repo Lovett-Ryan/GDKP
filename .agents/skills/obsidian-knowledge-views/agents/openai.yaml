@@ -1,0 +1,4 @@
+interface:
+  display_name: "GDKP-Obsidian Knowledge Graph"
+  short_description: "Build selective student notes and a sparse graph"
+  default_prompt: "Use $obsidian-knowledge-views to build or refresh the curated Obsidian knowledge graph."

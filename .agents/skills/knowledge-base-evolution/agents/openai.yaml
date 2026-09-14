@@ -1,0 +1,4 @@
+interface:
+  display_name: "GDKP-Knowledge Base Evolution"
+  short_description: "Plan optional evidence-backed knowledge updates"
+  default_prompt: "Use $knowledge-base-evolution to assess and coordinate this optional knowledge-base update."

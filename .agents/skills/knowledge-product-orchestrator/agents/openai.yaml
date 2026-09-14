@@ -1,0 +1,4 @@
+interface:
+  display_name: "GDKP-Knowledge Product Orchestrator"
+  short_description: "Run goal-driven and coverage-first knowledge workflows"
+  default_prompt: "Use $knowledge-product-orchestrator to run or resume this GDKP project, applying coverage-first routing when the scope is broad."

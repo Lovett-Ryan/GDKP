@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+
+/.knowledge-product/
+/outputs/
+/test_v1/
+/test_v2/
+/assets/branding/
+
+/README.zh-CN.md
+/docs/zh-CN/
+
+# The canonical public source lives under .agents/.
+/skills/
+/scripts/
+/references/

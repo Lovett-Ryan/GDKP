@@ -1,0 +1,4 @@
+interface:
+  display_name: "GDKP-Knowledge Base Reuse"
+  short_description: "Reuse qualified knowledge with clear lineage"
+  default_prompt: "Use $knowledge-base-reuse to evaluate and establish optional knowledge reuse for this project."

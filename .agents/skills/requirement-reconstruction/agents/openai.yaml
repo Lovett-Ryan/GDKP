@@ -1,0 +1,4 @@
+interface:
+  display_name: "GDKP-Requirement Reconstruction"
+  short_description: "Reconstruct traceable goals and coverage contracts"
+  default_prompt: "Use $requirement-reconstruction to convert these fragments into semantically traceable goals, coverage contracts, and work packages."

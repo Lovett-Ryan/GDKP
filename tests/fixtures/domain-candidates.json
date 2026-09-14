@@ -1,0 +1,62 @@
+{
+  "domain_skill_candidate_manifest": {
+    "schema_version": 1,
+    "manifest_id": "dsm_01991d8e-1234-7abc-8def-1234567890ab",
+    "project_id": "prj_01991d8e-1234-7abc-8def-1234567890ab",
+    "gap_id": "dcg_01991d8e-1234-7abc-8def-1234567890ab",
+    "goal_id": "gol_01991d8e-1234-7abc-8def-1234567890ab",
+    "goal_version": 1,
+    "field_id": "engineering-standards",
+    "candidates": [
+    {
+      "candidate_id": "dsc_01991d8e-1234-7abc-8def-b234567890ab",
+      "source": {
+        "repo_url": "https://github.com/owner/repository",
+        "repo_path": "skills/example",
+        "upstream_author": "owner",
+        "upstream_name": "example",
+        "upstream_display_name": "Example",
+        "requested_ref": "v1.0.0",
+        "resolved_commit": "0123456789abcdef0123456789abcdef01234567",
+        "license": "Apache-2.0"
+      },
+      "score": {
+        "goal_and_domain_fit": 23,
+        "professional_rigor": 17,
+        "safety_and_least_authority": 18,
+        "source_and_maintenance_credibility": 13,
+        "verifiability": 8,
+        "license_and_portability": 9,
+        "total": 0
+      },
+      "vetoes": []
+    },
+    {
+      "candidate_id": "dsc_01991d8e-1234-7abc-8def-c234567890ab",
+      "source": {
+        "repo_url": "https://github.com/unknown/repository",
+        "repo_path": "skills/example",
+        "upstream_author": "unknown",
+        "upstream_name": "example",
+        "upstream_display_name": "Example",
+        "requested_ref": "main",
+        "resolved_commit": "1123456789abcdef0123456789abcdef01234567",
+        "license": "Apache-2.0"
+      },
+      "score": {
+        "goal_and_domain_fit": 22,
+        "professional_rigor": 16,
+        "safety_and_least_authority": 16,
+        "source_and_maintenance_credibility": 10,
+        "verifiability": 7,
+        "license_and_portability": 8,
+        "total": 0
+      },
+      "vetoes": [
+        "license-missing"
+      ]
+    }
+    ],
+    "manifest_hash": "pending"
+  }
+}

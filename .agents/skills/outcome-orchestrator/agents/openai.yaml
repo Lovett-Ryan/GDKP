@@ -1,0 +1,4 @@
+interface:
+  display_name: "GDKP-Outcome Orchestrator"
+  short_description: "Produce and verify learning or product outcomes"
+  default_prompt: "Use $outcome-orchestrator to execute and verify the requested learning or product result."

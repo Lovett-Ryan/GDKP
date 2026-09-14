@@ -1,0 +1,4 @@
+interface:
+  display_name: "GDKP-Intent and Source Analysis"
+  short_description: "Confirm outcome, breadth, depth, and source boundaries"
+  default_prompt: "Use $intent-source-analysis to confirm this goal's outcome, coverage breadth, learning depth, and source boundary in one compact intake."

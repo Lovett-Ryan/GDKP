@@ -1,0 +1,4 @@
+interface:
+  display_name: "GDKP-Zotero Source Gate"
+  short_description: "Build coverage baselines and audit evidence in Zotero"
+  default_prompt: "Use $zotero-source-gate to build a structural coverage baseline or register, supplement, admit, and audit project evidence."

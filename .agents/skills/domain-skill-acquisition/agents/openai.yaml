@@ -1,0 +1,4 @@
+interface:
+  display_name: "GDKP-Domain Skill Acquisition"
+  short_description: "Audit and install project-scoped GitHub Skills"
+  default_prompt: "Use $domain-skill-acquisition to assess this capability gap and, after Q5, install an approved GitHub Skill."

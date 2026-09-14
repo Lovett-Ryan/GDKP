@@ -1,0 +1,4 @@
+interface:
+  display_name: "GDKP-Knowledge Framework"
+  short_description: "Design source-grounded curricula and concept relations"
+  default_prompt: "Use $knowledge-framework to design the publication hierarchy, concepts, claims, relations, and any required broad-domain coverage audit."

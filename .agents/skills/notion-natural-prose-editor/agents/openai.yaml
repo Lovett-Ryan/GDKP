@@ -1,0 +1,5 @@
+interface:
+  display_name: "GDKP-Notion Natural Prose Editor"
+  short_description: "Refine evidence-backed Notion prose before claim audit"
+  default_prompt: "Use $notion-natural-prose-editor to refine a complete Notion draft before claim audit."
+

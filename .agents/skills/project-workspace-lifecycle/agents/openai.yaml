@@ -1,0 +1,4 @@
+interface:
+  display_name: "GDKP-Project Workspace Lifecycle"
+  short_description: "Manage GDKP projects and application bindings"
+  default_prompt: "Use $project-workspace-lifecycle to initialize, attach, inspect, or recover this GDKP workspace."
