@@ -22,6 +22,7 @@ EXPECTED_SKILLS = (
     "intent-source-analysis",
     "requirement-reconstruction",
     "knowledge-framework",
+    "large-publication-architect",
     "zotero-source-gate",
     "notion-node-author",
     "notion-natural-prose-editor",
@@ -31,7 +32,7 @@ EXPECTED_SKILLS = (
     "outcome-orchestrator",
     "domain-skill-acquisition",
 )
-BUNDLE_VERSION = "1.0.0"
+BUNDLE_VERSION = "1.1.0"
 
 NAME_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 LINK_PATTERN = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
@@ -43,6 +44,7 @@ REQUIRED_REFERENCES = {
     "domain-capability-gap-policy.md",
     "github-skill-acquisition-policy.md",
     "knowledge-node-relation-schema.md",
+    "large-publication-state-contract.md",
     "managed-content-boundaries.md",
     "notion-node-template.md",
     "outcome-profiles.md",
@@ -244,8 +246,10 @@ REQUIRED_SCRIPTS = {
     "score_domain_skill.py",
     "validate_bundle.py",
     "validate_claim_audit.py",
+    "validate_citation_projection.py",
     "validate_coverage_audit.py",
     "validate_handoff.py",
+    "validate_large_publication_state.py",
 }
 
 CORE_REQUIRED_TEXT = {
@@ -255,14 +259,21 @@ CORE_REQUIRED_TEXT = {
         "CoverageBaseline",
         "TopicCoverageMatrix",
         "OmissionLedger",
+        "Orthogonal Large-Publication Branch",
+        "full-book completion barrier",
     ),
     "references/project-kernel.md": (
         "GDKP-<Project Name>",
         "<project-root>/Obsidian/",
+        "DraftPacket queue",
+        "Runtime compaction",
     ),
     "references/notion-node-template.md": (
         "textbook or monograph",
         "never create a Source View image",
+        "DraftPacket",
+        "definition + explanation + role/connection",
+        "Recommended Reading",
     ),
     "references/view-projection-policy.md": (
         "one curated project knowledge graph",
@@ -289,15 +300,79 @@ CORE_REQUIRED_TEXT = {
         "TopicCoverageMatrix",
         "coverage_unverified",
     ),
+    "skills/large-publication-architect/SKILL.md": (
+        "FullBookChapterKnowledgeMap",
+        "DraftPacket",
+        "runtime compaction",
+        "exercise_gate: false",
+        "model_semantic_review",
+        "Single-Pass Pre-Publication Draft Review",
+        "No Routine Post-Write Audit",
+        "source and factual-claim audit",
+    ),
     "skills/zotero-source-gate/SKILL.md": (
         "Structural Coverage Baseline",
         "CoverageBaseline",
         "structural role from factual-evidence role",
+        "support_assessment",
+        "--evidence-pack",
+        "citation-ready Zotero metadata",
     ),
     "skills/knowledge-product-orchestrator/SKILL.md": (
         "Coverage-First Routing",
+        "Large-Publication Routing",
         "CoverageAuditReceipt",
+        "LargePublicationRunState",
+        "validate_large_publication_state.py",
+        "gate_receipt",
+        "Proportional Audit Path",
+        "never send the repaired draft through a second Architect review",
         "Never describe requirement coverage as domain completeness",
+        "validate_citation_projection.py",
+    ),
+    "skills/notion-node-author/SKILL.md": (
+        "Single Draft Review, Zotero Audit, and Direct Publication",
+        "packet-dispatch",
+        "publish-ready",
+        "do not reload",
+        "CitationProjection",
+        "--source-draft",
+    ),
+    "skills/notion-natural-prose-editor/SKILL.md": (
+        "Do not run by default",
+    ),
+    "skills/obsidian-knowledge-views/SKILL.md": (
+        "without rereading notes",
+        "Do not create verification receipts",
+    ),
+    "references/workflow-contracts.md": (
+        "FullBookChapterKnowledgeMap",
+        "DraftPacket queue",
+        "runtime compaction",
+        "full-book completion barrier",
+        "LargePublicationRunState",
+        "validate_large_publication_state.py",
+        "one bounded pre-publication Architect DraftQualityReview",
+        "never a second Architect review",
+    ),
+    "references/large-publication-state-contract.md": (
+        "LargePublicationRunState",
+        "Forward Lifecycle",
+        "Prospective Validation Gates",
+        "hash-chained receipts",
+        "validate_large_publication_state.py",
+        "validate_claim_audit.py",
+        "validate_citation_projection.py",
+    ),
+    "references/claim-evidence-contract.md": (
+        "locator-specific EvidenceUnits",
+        "support_assessment",
+        "generic chapter-level EvidenceUnit",
+    ),
+    "references/citation-and-embed-policy.md": (
+        "Citation Projection",
+        "validate_citation_projection.py",
+        "Recommended Reading",
     ),
 }
 

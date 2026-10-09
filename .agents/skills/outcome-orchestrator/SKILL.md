@@ -15,6 +15,8 @@ Read [workflow-contracts.md](../../references/workflow-contracts.md) before hand
 
 Require current ProjectContext, GoalContract, RequirementContract, WorkPackageGraph, output scope, and relevant publication, evidence, reuse, graph, or domain-capability references.
 
+For a large textbook or monograph, require the orchestrator's full-book publication-completion state before making learner exercises, experiments, or mastery checks the main workflow. A published chapter or completed DraftPacket is not a complete book.
+
 ## Task Design
 
 1. Translate Work Packages into atomic TaskSpecs and an acyclic TaskGraph internally.
@@ -23,6 +25,8 @@ Require current ProjectContext, GoalContract, RequirementContract, WorkPackageGr
 4. For learning, prefer reproduction, problem solving, explanation, comparison, implementation, experiment, or transfer that demonstrates usable understanding.
 5. For products, optimize for the requested result and automate implementation detail unless the user reserved it.
 6. Use admitted Zotero evidence when a task makes material external claims or depends on standards, compatibility, recommendations, or safety facts. Purely local work needs no artificial exemption receipt.
+
+Exercises and demonstrations may be prepared while publication continues, but they do not unlock later chapters and must not pause the publication queue. Only an explicit user choice for an interactive chapter-unlock course may make learning validation affect publication order.
 
 Do not ask the user to approve TaskSpecs, TaskGraphs, executor routing, or routine implementation steps. Ask in Codex only for a goal-changing trade-off or destructive, costly, credential-sensitive, externally communicative, out-of-scope, or user-content-overwriting action.
 

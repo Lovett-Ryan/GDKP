@@ -42,11 +42,15 @@ State the intended use and scope, explain behavior or requirements, provide proc
 
 These are editorial prompts, not mandatory headings. Do not force every page into the same template.
 
+For most explanatory paragraphs, make the concept identifiable, explain how or why it works, and connect it to its consequence, use, prerequisite, contrast, or next idea. This is a flexible `definition + explanation + role/connection` logic, not three visible labels or a fixed sentence template.
+
 ## Nested Knowledge
 
 Use Notion's nested pages when a large chapter contains coherent smaller subjects. The parent page should orient the reader and link naturally to its child pages. A child page remains a complete readable section, not an empty routing stub.
 
 The internal Framework may distinguish Containers from KnowledgeNodes, but those machine types must not appear in visible titles or headings.
+
+In a large publication, Framework nodes, teaching topics, DraftPackets, paragraphs, and headings are separate granularities. Several related nodes may be explained continuously under one natural heading. Several hidden DraftPackets may contribute to the same section without exposing packet boundaries. Create a new heading only for a genuine change of reader-facing problem, object, or reasoning stage.
 
 ## Relationship and Combination Content
 
@@ -79,12 +83,17 @@ Use numbered in-text citations such as `[1]` where appropriate. In the Reference
 - format papers in IEEE style;
 - use the page or site title for a webpage and include access context when useful;
 - make the original URL directly clickable;
+- include exactly the sources used by numbered in-text citations;
+- keep broader uncited sources in a separate `Recommended Reading` section;
+- never expose Zotero item keys, EvidenceUnit IDs, locators, claim IDs, or citation placeholders;
 - never create a Source View image, screenshot, thumbnail, bookmark preview, iframe, or other embedded preview.
 
 ## Internal Authoring Cycle
 
-The author first completes the substantive draft, then sends that complete draft through `notion-natural-prose-editor`. After the edited draft returns, the author resolves any substantive issues, extracts the final DraftClaimSet, requests an evidence audit, revises unsupported wording, publishes the audited revision, and verifies read-back. The prose editor does not own factual claims, citations, or publication. Those artifacts and iterations stay in Project Kernel state. Do not ask the user to approve a template profile, draft schema, block-by-block preview, or mutation receipt.
+The author completes the substantive draft for the current reliable authoring unit. Run `notion-natural-prose-editor` only when the user explicitly requests polishing or gives concrete prose-quality feedback. For a coherent `large_publication` unit, send the canonical local draft through one bounded Architect DraftQualityReview before claim extraction; apply one local repair pass or route a real source/scope gap, then do not re-review the repair. Extract the final DraftClaimSet, request the Zotero factual-claim audit, and revise only unsupported wording. After the audit passes, build and validate one CitationProjection that changes only citation aliases, links, and bibliography presentation. Publish the projected revision once. The prose editor does not own factual claims, citations, or publication. Those artifacts and iterations stay in Project Kernel state. Do not ask the user to approve a template profile, draft schema, block-by-block preview, or mutation receipt.
 
-Read-back verification occurs after persistence and reload. Confirm the intended page hierarchy and section continuity, native equation objects with zero raw LaTeX delimiters, expected citations, clickable References, and preservation of user-authored blocks. A local or offline draft remains pending publication.
+For a large publication, assemble accepted DraftPackets in their canonical order. Reconcile transitions at adjacent seams and remove true repetition locally; never ask a model to summarize or rewrite an entire large chapter or book merely to make the pieces sound uniform. Any edit that changes factual wording invalidates the affected Zotero claim audit and requires source re-audit before republishing.
+
+After a successful write response identifies the intended native page, record the result and continue. Do not reload the page to audit semantic coverage, style, hierarchy, equations, citation counts, links, or block preservation. A local or offline draft remains pending publication because no Notion write succeeded.
 
 The actual published page is the review surface. If the user dislikes its wording, organization, depth, or style, revise the publication while preserving evidence integrity.

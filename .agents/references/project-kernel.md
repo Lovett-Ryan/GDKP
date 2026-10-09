@@ -48,7 +48,7 @@ Bind a publication root under a user-approved Notion location. A knowledge proje
 
 Bind the Vault to `<project-root>/Obsidian/` by default. Store its normalized resolved path, native identity when available, and the exact workflow-managed scope. Store machine lineage under a hidden `.gdkp/` directory inside the Vault; keep visible notes natural and reader-oriented.
 
-Before using an Obsidian connector or MCP, read its active Vault information and compare the normalized path with the binding. Only an exact bound-Vault match is an available application capability. A mismatch may still permit carefully scoped filesystem preparation inside the intended project Vault, but it never permits reads or writes in the unrelated active Vault and never proves application verification.
+Before using an Obsidian connector or MCP, read its active Vault information and compare the normalized path with the binding. Only an exact bound-Vault match is an available connector-backed write capability. A mismatch may still permit carefully scoped filesystem preparation inside the intended project Vault, but it never permits reads or writes in the unrelated active Vault.
 
 ## Identity and State
 
@@ -60,6 +60,8 @@ State authority is split as follows:
 - revisioned artifacts: machine declarations and checksums;
 - `runtime.sqlite`: rebuildable query index;
 - external applications: canonical content only within their assigned role.
+
+For a large publication, the Kernel also persists `LargePublicationRunState` as defined in [large-publication-state-contract.md](large-publication-state-contract.md), its hash-chained gate receipts, the canonical `FullBookChapterKnowledgeMap` reference, DraftPacket queue, packet checkpoints, accepted draft content or stable page destinations, single-pass DraftQualityReview state and finding dispositions, Zotero claim-audit state, publication-operation state, continuity capsules, and the next schedulable packet. Each successful prospective gate receipt is appended to both the run state and `events.jsonl` before the next owner is dispatched. Runtime compaction is a replaceable working cache, not state authority. After compaction, restart, or agent handoff, reload these records rather than reconstructing accepted prose from model memory.
 
 Credentials never belong in the project directory.
 
@@ -78,8 +80,8 @@ A project run lease scopes concurrent writes to one project. Cross-project evolu
 3. Confirm the brief if the goal or external scope is not already clear.
 4. Stage and atomically create the local Kernel, `outputs/`, and default `Obsidian/` Vault.
 5. Create or bind the root-level Zotero collection and Notion publication root within the confirmed project scope.
-6. When an Obsidian connector is available, confirm that it reports the intended Vault before application-level setup or verification. Configure workflow-owned graph settings only in the actual Vault; do not create a duplicate `.obsidian/` at the project root when the Vault is its `Obsidian/` child.
-7. Re-read local and remote targets, record stable bindings and verification levels, and checkpoint.
+6. When an Obsidian connector is available, confirm that it reports the intended Vault before connector-backed setup or writing. Configure workflow-owned graph settings only in the actual Vault; do not create a duplicate `.obsidian/` at the project root when the Vault is its `Obsidian/` child.
+7. Record returned native identities, stable bindings, capability levels, and the checkpoint. Do not reread publication or graph content merely to audit the write.
 
 Do not ask for separate technical previews for these ordinary, reversible, workflow-owned writes. Stop for an ambiguous collision, an existing object that would need adoption, a permission problem, cost, or any user-content change.
 
@@ -93,7 +95,9 @@ Perform read-only checks of layout, hashes, bindings, connectors, leases, pendin
 
 ### Resume
 
-Continue from the latest verified checkpoint. Before retrying a prepared or possibly applied operation, query the target by operation ID or stable identity. Preserve verified work.
+Continue from the latest durable checkpoint. Before retrying a prepared or possibly applied operation, query the target by operation ID or stable identity. Preserve completed work.
+
+For a DraftPacket, validate the bound map, requirement, framework, evidence, body, and binding revisions, then rerun the appropriate gate in [validate_large_publication_state.py](../scripts/validate_large_publication_state.py). A summary cannot advance `queued`, `dispatched`, or `checkpointed` state to accepted. A hash or revision mismatch invalidates the affected DraftQualityReview, Zotero claim audit, CitationProjection, and publication state and resumes from the last durable checkpoint; context pressure causes a smaller packet or another internal pass, never a summary rewrite of accepted prose. Preserve whether the current publication run already consumed its single Architect review: an unchanged draft is not reviewed again, and a repair prompted by that review proceeds directly to claim audit. Do not recover by rereading Notion or Obsidian content.
 
 ### Relink
 
@@ -109,7 +113,7 @@ Stop automation bindings and preserve a tombstone and lineage. Leave external co
 
 ## Mutation and Recovery
 
-For every write, internally record a stable operation ID, expected target, managed scope, input revision, result, and read-back verification. Ordinary writes covered by the confirmed project scope proceed without another user gate. Compensation may touch only workflow-owned content.
+For every write, internally record a stable operation ID, expected target, managed scope, input revision, and returned result. Ordinary writes covered by the confirmed project scope proceed without another user gate. A successful connector response carrying the intended native identity is sufficient operational evidence; do not add publication-content or graph read-back audits. Compensation may touch only workflow-owned content.
 
 An unavailable connector blocks only its dependent result:
 
@@ -118,7 +122,7 @@ An unavailable connector blocks only its dependent result:
 | Zotero not writable | Source planning and local capture | Sources admitted or registered |
 | Notion not writable | Local publication draft | Notion publication completed |
 | Obsidian unavailable | Graph plan and queued files | Vault refreshed |
-| Obsidian connector on another Vault | Scoped files in the intended Vault, labeled `local_files_verified` | Obsidian application or graph verified |
+| Obsidian connector on another Vault | Scoped files in the intended Vault, labeled `local_files_verified` | Connector-backed Vault or graph write completed |
 | GitHub unavailable | Verified pinned project Skills | Discovery, install, or update |
 | Skill integrity drift | Quarantine and fallback | Active capability |
 

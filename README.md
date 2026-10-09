@@ -6,13 +6,13 @@
 
 Turn a learning, research, or product goal into an evidence-backed publication, a reusable knowledge view, and a verified outcome.
 
-[![Version](https://img.shields.io/badge/version-1.0.0-2563eb)](#version-and-integrity)
-[![Core skills](https://img.shields.io/badge/core_skills-13-0f766e)](#core-skills)
+[![Version](https://img.shields.io/badge/version-1.1.0-2563eb)](#version-and-integrity)
+[![Core skills](https://img.shields.io/badge/core_skills-14-0f766e)](#core-skills)
 [![Codex](https://img.shields.io/badge/Codex-Agent_Skills-111827)](https://learn.chatgpt.com/docs/build-skills)
 
 </div>
 
-GDKP extends Codex with 13 coordinated Agent Skills for building durable knowledge products and completing evidence-sensitive work. It connects goal clarification, coverage design, source governance, formal publication, knowledge-graph projection, execution, and acceptance verification in one recoverable workflow.
+GDKP extends Codex with 14 coordinated Agent Skills for building durable knowledge products and completing evidence-sensitive work. It connects goal clarification, coverage design, large-publication architecture, source governance, formal publication, knowledge-graph projection, execution, and acceptance verification in one recoverable workflow.
 
 GDKP is a repository-scoped skill bundle—not a standalone application, a prompt collection, or a replacement for Zotero, Notion, or Obsidian.
 
@@ -32,14 +32,21 @@ goal
   → outcome and source boundary
   → traceable requirements
   → evidence-ready framework
+  → full-book chapter-to-knowledge architecture when scale requires it
   → admitted sources
-  → complete draft and claim audit
-  → verified publication
-  → selective knowledge views
+  → complete draft
+  → one bounded semantic review when scale requires it
+  → exact claim audit
+  → source-audited publication
+  → one-pass selective knowledge views
   → verified learning or product outcome
 ```
 
 For textbooks, curricula, comprehensive surveys, field maps, and other broad-domain requests, GDKP adds a **coverage-first** branch. Structural sources establish the field boundary; a topic matrix records what is included; omissions require explicit authority; and a deterministic audit runs before large-scale authoring begins.
+
+For very large textbooks and monographs, GDKP also adds a **scale-isolated publication** branch. `large-publication-architect` produces one complete chapter-to-knowledge map, while the orchestrator turns it into bounded hidden DraftPackets with durable checkpoints. More knowledge increases scheduled work rather than shrinking each explanation, and reader-visible headings remain independent from execution batches. Every planned obligation is assigned prospectively to a Packet and page destination before authoring, so completeness is built into scheduling instead of reconstructed through an expensive Notion reread.
+
+GDKP retains only audits with distinct value: deterministic field-coverage audit for broad domains, Zotero source and exact factual-claim audit, and one bounded semantic review of each coherent large-publication draft before publication. That review may trigger one local repair but never a second review in the same run. GDKP then writes Notion and Obsidian once and records their operation results; it does not reload Notion prose or reread Obsidian notes, links, counts, and graph settings for post-write acceptance. Concrete connector errors and user feedback still trigger targeted correction.
 
 ## How Codex uses GDKP
 
@@ -106,6 +113,7 @@ sequenceDiagram
     participant O as GDKP Orchestrator
     participant W as Workspace Lifecycle
     participant D as Intent, Requirements and Framework
+    participant A as Large Publication Architect
     participant Z as Zotero Source Gate
     participant N as Notion Authoring
     participant B as Obsidian Views
@@ -130,13 +138,33 @@ sequenceDiagram
 
     D-->>O: Goal contract, work packages, and knowledge framework
     deactivate D
+    opt Large publication
+        O->>A: Build the complete chapter-to-knowledge map
+        activate A
+        A-->>O: Teaching topics, DraftPacket boundaries, and narrative spine
+        deactivate A
+    end
     O->>Z: ❹ Register and admit factual evidence
     activate Z
     Z-->>O: Evidence units and admission receipts
     deactivate Z
     O->>N: ❺ Write and refine the complete draft
     activate N
-    N-->>O: Draft revision and exact claim set
+    N-->>O: Canonical local draft
+    deactivate N
+    O->>A: If large, review this coherent draft once
+    activate A
+    A-->>O: Pass or compact substantive findings
+    deactivate A
+    opt Substantive findings
+        O->>N: Apply one bounded repair; do not re-review
+        activate N
+        N-->>O: Repaired canonical draft
+        deactivate N
+    end
+    O->>N: Extract the final exact claim set
+    activate N
+    N-->>O: DraftClaimSet
     deactivate N
     O->>Z: ❻ Audit claims against admitted evidence
     activate Z
@@ -155,16 +183,17 @@ sequenceDiagram
     end
     deactivate Z
 
-    O->>N: ❼ Publish and reload-verify
+    O->>N: ❼ Publish the source-audited revision once
     activate N
-    N-->>O: Verified publication revision
+    N-->>O: Native page identity and successful write result
     deactivate N
-    Note over O,X: One verified publication revision drives both downstream outcomes
+    Note over O,N: No routine Notion reload or semantic audit
+    Note over O,X: One source-audited publication revision drives both downstream outcomes
 
     par Refresh knowledge views
-        O->>B: Project the verified revision
+        O->>B: Project the source-audited published revision once
         activate B
-        B-->>O: Selective notes, graph, and projection receipt
+        B-->>O: Selective notes, graph, and write result
         deactivate B
     and Execute the goal
         O->>X: Run the approved work packages
@@ -173,7 +202,7 @@ sequenceDiagram
         deactivate X
     end
 
-    O-->>U: ❽ Report the verified outcome and remaining limitations
+    O-->>U: ❾ Report the verified outcome and remaining limitations
     deactivate O
     deactivate U
 ```
@@ -187,7 +216,7 @@ GDKP keeps each kind of information in one appropriate place:
 | **Codex** | Control plane, skill routing, user decisions, and completion reporting |
 | **Zotero** | Source registry, structural coverage baselines, evidence admission, and claim audits |
 | **Notion** | Canonical reader-facing textbook, monograph, report, or requested product document |
-| **Obsidian** | Selective concept notes and a sparse semantic graph derived from verified publications |
+| **Obsidian** | Selective concept notes and a sparse semantic graph derived from source-audited publications |
 | **Local project** | Installed skills, recoverable machine state, executable work, and requested outputs |
 
 Notion does not become a task log, and Obsidian does not mirror the entire publication. Workflow receipts, hashes, bindings, and checkpoints stay in the local project rather than appearing in reader-facing content.
@@ -213,7 +242,7 @@ cd GDKP
 python3 -m pip install PyYAML
 ```
 
-Codex will discover the 13 skills directly from `.agents/skills/`.
+Codex will discover the 14 skills directly from `.agents/skills/`.
 
 ### Install GDKP into another project
 
@@ -222,7 +251,7 @@ From the GDKP repository root, package the complete bundle into a project that d
 ```bash
 python3 .agents/scripts/package_core_bundle.py \
   /path/to/your-project/.agents \
-  --source-id GDKP-v1.0.0
+  --source-id GDKP-v1.1.0
 ```
 
 Install the bundle as a unit. The skills share contracts, schemas, and deterministic helpers under `.agents/references/` and `.agents/scripts/`.
@@ -281,7 +310,7 @@ The public repository also contains English documentation, this README, and the 
 
 ## Core skills
 
-GDKP 1.0.0 releases all 13 core skills together:
+GDKP 1.1.0 releases all 14 core skills together:
 
 | Skill | Owns |
 |---|---|
@@ -290,10 +319,11 @@ GDKP 1.0.0 releases all 13 core skills together:
 | [`intent-source-analysis`](.agents/skills/intent-source-analysis/SKILL.md) | Outcome, breadth, depth, source boundary, and retained user decisions |
 | [`requirement-reconstruction`](.agents/skills/requirement-reconstruction/SKILL.md) | Atomic requirements, goal contract, coverage contract, and work-package graph |
 | [`knowledge-framework`](.agents/skills/knowledge-framework/SKILL.md) | Publication hierarchy, knowledge nodes, claim intents, relations, and coverage audit |
+| [`large-publication-architect`](.agents/skills/large-publication-architect/SKILL.md) | Full-book maps, DraftPacket boundaries, and one bounded pre-publication semantic review |
 | [`zotero-source-gate`](.agents/skills/zotero-source-gate/SKILL.md) | Structural baselines, source registration, evidence admission, and exact claim audit |
-| [`notion-node-author`](.agents/skills/notion-node-author/SKILL.md) | Reader-facing authoring, revision, publication, and reload verification |
-| [`notion-natural-prose-editor`](.agents/skills/notion-natural-prose-editor/SKILL.md) | Natural-prose refinement without changing factual substance |
-| [`obsidian-knowledge-views`](.agents/skills/obsidian-knowledge-views/SKILL.md) | Selective concept notes and a sparse native graph |
+| [`notion-node-author`](.agents/skills/notion-node-author/SKILL.md) | Reader-facing authoring, one review-repair opportunity for large units, and one-pass publication |
+| [`notion-natural-prose-editor`](.agents/skills/notion-natural-prose-editor/SKILL.md) | Optional feedback-driven prose refinement without changing factual substance |
+| [`obsidian-knowledge-views`](.agents/skills/obsidian-knowledge-views/SKILL.md) | One-pass selective concept notes and a sparse native graph |
 | [`outcome-orchestrator`](.agents/skills/outcome-orchestrator/SKILL.md) | Learning or product execution and acceptance evidence |
 | [`knowledge-base-reuse`](.agents/skills/knowledge-base-reuse/SKILL.md) | Optional, traceable reuse of a qualified GDKP knowledge base |
 | [`knowledge-base-evolution`](.agents/skills/knowledge-base-evolution/SKILL.md) | Optional, evidence-backed evolution of an existing knowledge base |
@@ -315,7 +345,7 @@ GDKP also asks before destructive changes, overwriting user-authored content, wr
 
 ## Version and integrity
 
-The current bundle version is **1.0.0**. All 13 core skills are synchronized to this release in [`.agents/core-bundle-manifest.yaml`](.agents/core-bundle-manifest.yaml), which also records the release source ID, per-file SHA-256 digests, and a deterministic digest of the complete core tree.
+The current bundle version is **1.1.0**. All 14 core skills are synchronized to this release in [`.agents/core-bundle-manifest.yaml`](.agents/core-bundle-manifest.yaml), which also records the release source ID, per-file SHA-256 digests, and a deterministic digest of the complete core tree.
 
 Validate the canonical bundle:
 
@@ -332,7 +362,7 @@ The validator checks the core inventory, required skill metadata, shared referen
 |---|---|
 | [Getting Started](docs/getting-started.md) | Requirements, installation, first run, migration, and resume |
 | [Architecture](docs/architecture.md) | Design principles, five surfaces, full workflow, coverage-first routing, and project state |
-| [Core Skills](docs/skills.md) | Responsibilities and ownership boundaries of all 13 skills |
+| [Core Skills](docs/skills.md) | Responsibilities and ownership boundaries of all 14 skills |
 | [Governance](docs/governance.md) | Human decisions, managed-content boundaries, safety, and limitations |
 | [Development](docs/development.md) | Repository layout, validation, packaging, versioning, and contribution rules |
 
@@ -341,10 +371,10 @@ Browse the [documentation index](docs/README.md).
 ## Scope and limitations
 
 - Full publication and graph verification require readable and writable access to the intended external targets.
-- A verified publication is not proof of learning; learning goals require separate acceptance evidence.
+- A source-audited publication is not proof of learning; learning goals require separate acceptance evidence.
 - A completed task record is not proof that a product works; product goals require declared tests or inspection.
 - The core packager does not merge with an existing `.agents/` directory.
-- GDKP 1.0.0 is a repository-scoped Codex skill bundle, not a hosted service or standalone application.
+- GDKP 1.1.0 is a repository-scoped Codex skill bundle, not a hosted service or standalone application.
 
 ## License
 

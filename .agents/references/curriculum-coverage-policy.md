@@ -79,17 +79,58 @@ Run [validate_coverage_audit.py](../scripts/validate_coverage_audit.py) on the a
 
 The framework must expose the prerequisites needed to understand every mastery or understanding topic. A prerequisite may be taught just in time or placed in a reference appendix, but it may not disappear. When a prerequisite is intentionally deferred, state the resulting limit on downstream understanding.
 
+## Orthogonal Large-Publication Branch
+
+`coverage_first` and large-publication execution solve different problems:
+
+- `coverage_first` governs field boundary, topic inclusion, depth disposition, omissions, and prerequisite closure;
+- large-publication execution governs the complete chapter-to-knowledge plan, semantic grouping, bounded authoring, context recovery, and prospective assignment of every planned obligation to a publication unit.
+
+Apply each branch from its own trigger. A broad map may need coverage verification without a long publication, while a large revision of an already bounded publication may need scale isolation without reopening its confirmed field boundary. When both apply, coverage is verified first and its artifacts constrain the large-publication plan; the large-publication branch may reorganize exposition but may not silently add, remove, defer, or reclassify framework scope. Conversely, coverage status cannot be used as evidence that the prose is coherent, sufficiently detailed, or fully published.
+
 ## Large-Publication Execution
 
-Freeze and verify the global outline before substantial authoring, then write bounded publication units without changing the approved scope silently. Track every included framework target in a PublicationCoverageIndex as pending, drafted, audited, published, or blocked.
+After the applicable requirements and framework scope are current, `large-publication-architect` owns one complete, human-readable `FullBookChapterKnowledgeMap` before new or revised Notion authoring begins. It maps every chapter to substantive knowledge points, groups related points into teaching topics, preserves the specific content of confirmed user requirements, and states the intended narrative order. It is an atomic full-book result: internal checkpointing is allowed, but the first chapter, a representative sample, or a partial map may not be returned as ready merely because one model turn is full. The map is not a replacement for FrameworkSpec, TopicCoverageMatrix, OmissionLedger, EvidencePack, or PublicationCoverageIndex and cannot mutate their owners' decisions.
+
+Keep these granularities separate:
+
+```text
+framework target
+-> substantive knowledge point
+-> teaching topic
+-> one or more hidden DraftPackets
+-> continuous paragraphs
+-> reader-visible headings only where navigation requires them
+```
+
+A substantive knowledge point is an exposition obligation, not a keyword or a heading. It must say what concept, mechanism, relationship, derivation, boundary, or application the prose needs to explain. Several points may be fulfilled by one continuous passage, and one complex point may span multiple DraftPackets. Removing headings never authorizes removing their knowledge obligations.
+
+`knowledge-product-orchestrator` persists the canonical map revision and schedules the full DraftPacket queue. Each Packet receives only the global narrative spine, its complete local knowledge obligations, admitted local evidence, required terminology and notation, relevant adjacent accepted prose, and the next-step intent. If that material cannot fit with enough output capacity, split the Packet and continue automatically; do not shorten the obligations, turn them into an overview, omit details, expose the technical split as extra headings, or ask the user to reply `continue`.
+
+Runtime compaction and external checkpoints operate together. Compaction keeps a long control conversation usable, but it is not publication state. Each DraftPacket checkpoint must live in Project Kernel state or a referenced versioned artifact and bind the requirement, map, framework, evidence, and publication revisions; Packet obligations and status; accepted draft content or stable page destination; continuity context; the single-pass DraftQualityReview state; Zotero claim-audit state; and publication-operation state. After compaction, restart, or agent transfer, recover from this checkpoint rather than model memory. A mismatch invalidates affected states, and accepted prose must not be regenerated from a conversation summary.
+
+`notion-node-author` continues to own PublicationCoverageIndex and the published prose. The index is a lightweight prospective trace from each included framework target and substantive knowledge point through the canonical map to its DraftPacket and intended page. It prevents obligations from disappearing during scheduling without creating visible headings or one paragraph per point. Before final claim extraction, each coherent large-publication unit receives one bounded Architect DraftQualityReview against its assigned obligations and relationships; findings receive one Author repair pass or are routed to their source/scope owner, with no Architect re-review. Zotero then owns source admission and factual-claim audit. Notion prose is not reloaded for semantic, style, block, equation, citation-count, or hierarchy review, and Obsidian projections are not reread for graph review. Concrete user feedback can trigger a targeted revision.
 
 Large size changes scheduling, not coverage:
 
-- keep the complete global map visible;
-- author and audit coherent parts or chapters incrementally;
+- keep the complete canonical chapter-to-knowledge map recoverable and expose its natural-language full-book view to the user without making it a routine approval gate;
+- author and publish bounded DraftPackets and coherent publication units incrementally while preserving local depth;
 - serialize writes to the same external publication target;
 - re-run the coverage audit after a material framework revision;
-- declare the publication complete only when every included target is verified or explicitly reclassified through the governed omission process.
+- continue automatically after the first successful Packet, chapter, or publication-unit smoke test;
+- keep `exercise_gate: false` unless the user explicitly chooses an interactive, staged-release course;
+- declare the publication complete only when the full-book completion barrier passes.
+
+The full-book completion barrier requires all of the following:
+
+1. the canonical `FullBookChapterKnowledgeMap` is complete and bound to current upstream revisions;
+2. every included framework target, substantive knowledge point, and required relationship is assigned to a completed DraftPacket and intended published page, or is explicitly reclassified through the owning governed process;
+3. the DraftPacket queue contains no pending, partial, stale, or silently omitted work;
+4. each coherent publication unit has exactly one completed DraftQualityReview with every finding repaired once or governed, the final factual revision has a current Zotero claim audit, and every publication unit has a successful write result tied to its intended native target;
+5. no technical batch boundary remains as an accidental reader-facing structure;
+6. no learner exercise, experiment, response, or mastery result is being used as a substitute for publication evidence.
+
+Publication construction and learner validation are independent progress tracks. The default workflow finishes the complete publication before `outcome-orchestrator` takes over the main path for exercises or mastery evidence. Exercises may be prepared earlier as a non-blocking side branch, but incomplete learner work cannot pause the remaining chapters. Only an explicit interactive-course choice may make learner progress affect release order, and that choice does not weaken the full-book completion criteria for the publication eventually promised.
 
 ## Completion Standard
 
@@ -103,3 +144,5 @@ A curriculum or broad-domain framework is coverage-verified, or locally coverage
 6. the deterministic coverage audit passes.
 
 Coverage verification does not mean every possible paper, implementation, application, or historical detail is included. It means the chosen field boundary is externally grounded and no major topic inside that boundary disappeared without an accountable decision.
+
+Coverage verification, full-book publication completion, and learner mastery are three independent claims. Report each from its own evidence; never infer one from another.

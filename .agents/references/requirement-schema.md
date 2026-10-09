@@ -26,6 +26,8 @@ The GoalContract records internally:
 
 For a `coverage_first` goal, keep breadth and mastery as separate GoalContract dimensions. `Not required for mastery` is not a non-goal unless the user or governing policy separately excludes it from the visible field map.
 
+For a `large_publication` goal, preserve the scale trigger, all explicitly requested substantive topics and details with their raw anchors, the promised full-book completion condition, and whether the user explicitly selected interactive chapter unlocking. Default `exercise_gate` to false. These requirements establish content obligations and completion boundaries; they do not prescribe Framework nodes, DraftPackets, paragraphs, or visible headings.
+
 ## Coverage Contract
 
 Read [curriculum-coverage-policy.md](curriculum-coverage-policy.md) for a textbook, curriculum, broad field map, or other coverage-first project. The CoverageContract binds the confirmed breadth profile to the current CoverageBaseline and records:

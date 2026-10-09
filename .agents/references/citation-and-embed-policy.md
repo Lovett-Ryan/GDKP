@@ -12,6 +12,21 @@ Never cite a search result snippet, AI answer, unverified summary, or inaccessib
 
 Use numbered citations such as `[1]` close to the supported statement. Reuse the same number for the same source within a publication scope. Cite at the granularity needed to distinguish competing, versioned, jurisdiction-specific, or qualified claims.
 
+Zotero item keys, EvidenceUnit IDs, locators, claim IDs, and authoring placeholders are internal identities. They may exist in an unpublished working draft or machine artifact, but they must never appear in the reader-facing publication draft.
+
+## Citation Projection
+
+After the final factual wording passes the Zotero claim audit, Notion Author creates one deterministic `CitationProjection` for that exact publication unit. The projection maps every audited source identity used by the DraftClaimSet to:
+
+- one contiguous publication number assigned in first-use order;
+- the exact claim IDs supported by that source;
+- a formatted reader-facing reference;
+- the original HTTP(S) URL or stable locator when Zotero has one.
+
+Apply the projection without changing factual wording. Replace internal citation placeholders with numbered aliases, generate the numbered References section from the same entries, and preserve the audited fact-draft hash separately from the projected publication-draft hash. A citation-number, link-label, or bibliography-format change invalidates the projection and pending publication, but not the factual claim audit when the fact-bearing text is unchanged.
+
+Before `publish-ready`, run [validate_citation_projection.py](../scripts/validate_citation_projection.py) against the source fact draft, projected draft, and manifest. For formal factual content, also pass the exact DraftClaimSet and EvidencePack. The validator must reject a source-hash mismatch, internal source identifiers, missing or orphaned numbers, duplicate source aliases, bibliography drift, missing clickable URLs declared by the projection, and a projection whose source-to-claim bindings differ from the audited evidence.
+
 ## Reference Formatting
 
 ### Papers and formal publications
@@ -41,10 +56,14 @@ Never add any of the following to a References section:
 
 This prohibition applies even when a connector can generate the preview. A failed preview is not a workflow gap and must not create a manual task.
 
+## References and Recommended Reading
+
+`References` contains only sources actually cited by numbered aliases in the publication body, and every numbered alias resolves to exactly one entry. A separate unnumbered `Recommended Reading` section may contain broader structural or pedagogical sources. Never label recommended reading as References, and never use a structural reading list in place of the sources supporting the published claims.
+
 ## Obsidian
 
 Visible Obsidian notes normally link back to the relevant Notion chapter rather than duplicating the full bibliography. Internal lineage under `.gdkp/` preserves exact Notion and Zotero references. Add a direct source citation to a visible note only when it materially helps the learner and does not turn the note into a second textbook.
 
 ## Change Control
 
-If a factual sentence changes meaning, re-run the internal claim audit. Pure formatting, link-label, or citation-number changes do not require user approval, but the final publication must still be read back and verified.
+If a factual sentence changes meaning, re-run the Zotero claim audit before republishing. Pure formatting, link-label, or citation-number changes do not require user approval or a new source audit, but they require a fresh CitationProjection bound to the unchanged fact draft. Do not add a Notion or Obsidian read-back audit after the write.

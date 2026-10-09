@@ -23,9 +23,10 @@ Require a current IntentContract, SourcePolicy, ProjectContext, ScopeDecisionLed
 4. Classify requirements and record dependencies, conflicts, executor boundaries, and acceptance evidence.
 5. Reconstruct Goal, Outcomes, Deliverables or Capabilities, Milestones, and Work Packages. Keep coverage breadth independent from per-topic mastery depth.
 6. For `coverage_first` work, reconcile the confirmed brief with the CoverageBaseline and produce a CoverageContract that defines completeness, topic visibility, depth allocation, prerequisite policy, authorized exclusions, and invalidation conditions.
-7. Map every required condition to a Work Package or explicit invariant.
-8. Detect contradictions, uncovered acceptance tests, cycles, untraceable additions, and untraceable scope reductions.
-9. Resolve ordinary implementation choices autonomously from the confirmed brief.
+7. For `large_publication` work, preserve every explicit substantive topic and detail as a traceable content obligation or an explicitly governed conflict. Record the requested scale, full-book completion condition, and the default that exercises do not unlock later publication unless the user chose an interactive course.
+8. Map every required condition to a Work Package or explicit invariant.
+9. Detect contradictions, uncovered acceptance tests, cycles, untraceable additions, and untraceable scope reductions.
+10. Resolve ordinary implementation choices autonomously from the confirmed brief.
 
 Do not ask the user to approve requirement YAML, a goal file, a WorkPackageGraph, or routing choices. Ask one concise Codex question only when the unresolved choice would change the goal, acceptance test, priority, source boundary, risk, or user/AI responsibility.
 
@@ -38,6 +39,7 @@ Do not ask the user to approve requirement YAML, a goal file, a WorkPackageGraph
 - Do not discover evidence or mutate external applications.
 - Do not use `coverage_complete` as a synonym for mapped requirements. Report `requirements_coverage_complete` for internal requirement coverage, and reserve `coverage_verified` for a framework that passes the external coverage audit.
 - Do not turn `not required for mastery` into a non-goal or omission without separate authority.
+- Do not replace detailed user-specified knowledge with a shorter category label. The original anchors must remain available to the framework and, for a large publication, to `large-publication-architect`.
 
 ## Outputs
 

@@ -21,12 +21,13 @@ For `coverage_first` work, additionally require a current CoverageProfile, Scope
 
 1. Build a nested Container hierarchy appropriate to the subject and intended publication.
 2. Define concrete KnowledgeNodes that can carry substantive explanations.
-3. Map requirements and learning or product outcomes to the smallest relevant nodes.
-4. Create ClaimIntents for definitions, mechanisms, comparisons, formulas, constraints, examples, and other factual needs. For abstract theory, explicitly cover the modeled problem, variables, assumptions, inference target, objective, update or action, observable consequence, and validity boundary so the eventual application path is evidence-ready.
-5. Define only explicit, useful semantic relations with readable reasons and evidence needs.
-6. Identify important relationship or combination content that Notion must explain inside the relevant chapter.
-7. Mark a cautious set of potential Obsidian graph nodes and defensible edges, allowing isolated candidates and disconnected components. Add a small editorial importance-tier candidate for presentation, but do not create a formal macro/local view pair, calculate a center score, or force connectivity.
-8. Emit source gaps for unsupported ClaimIntents and revise after evidence admission when needed.
+3. Treat KnowledgeNodes as coverage and evidence-planning units, not as mandatory chapters, headings, paragraphs, or authoring calls. Several related nodes may form one teaching topic, and one complex node may require several teaching topics.
+4. Map requirements and learning or product outcomes to the smallest relevant nodes.
+5. Create ClaimIntents for definitions, mechanisms, comparisons, formulas, constraints, examples, and other factual needs. For abstract theory, explicitly cover the modeled problem, variables, assumptions, inference target, objective, update or action, observable consequence, and validity boundary so the eventual application path is evidence-ready.
+6. Define only explicit, useful semantic relations with readable reasons and evidence needs.
+7. Identify important relationship or combination content that Notion must explain inside the relevant chapter.
+8. Mark a cautious set of potential Obsidian graph nodes and defensible edges, allowing isolated candidates and disconnected components. Add a small editorial importance-tier candidate for presentation, but do not create a formal macro/local view pair, calculate a center score, or force connectivity.
+9. Emit source gaps for unsupported ClaimIntents and revise after evidence admission when needed.
 
 Framework structure is an AI-owned editorial and reasoning decision. Do not ask the user to approve IDs, hierarchy diagrams, relation registries, a ViewSpec, a center node, or a framework preview. Ask only through the orchestrator if a structural choice reveals a genuine goal ambiguity.
 
@@ -45,7 +46,7 @@ For a broad-domain framework, design against the CoverageBaseline rather than on
 
 Do not label the framework complete when only requirement mapping passed. Without a current passing coverage audit, return `needs_sources`, `needs_question`, or `needs_replan` as appropriate and keep the internal domain state `coverage_unverified`. A passing baseline whose status is `local_files_verified` yields `coverage_local_verified`; it can support framework review, but must retain the limitation that Zotero admission and factual-evidence use are still pending.
 
-For a work too large to author in one pass, freeze the verified global hierarchy and define coherent publication units. Size changes scheduling and depth allocation, never silent topic removal.
+For a work too large to author in one pass, freeze the verified global hierarchy but do not project node boundaries directly into publication units or visible headings. Return the complete framework and traceable content obligations to the orchestrator so `large-publication-architect` can build the full-book chapter-to-knowledge map. Size changes scheduling and the number of bounded authoring calls, never silent topic removal or reduced local depth.
 
 ## Invariants
 
@@ -55,10 +56,11 @@ For a work too large to author in one pass, freeze the verified global hierarchy
 - Importance is presentation metadata and never establishes a semantic relation.
 - Combination content must be complete in Notion; a link alone is insufficient.
 - Stable IDs and machine types remain invisible in publication titles.
+- KnowledgeNode count never determines visible heading count or DraftPacket count.
 - External increments use the smallest suitable node and preserve their origin state.
 - `Requirements covered` is not evidence that the domain is covered.
 - A topic omitted from the framework cannot be represented as a source gap only after the fact; baseline reconciliation must make unknown omissions visible first.
 
 ## Outputs
 
-Internally produce FrameworkSpec, ContainerRegistry, KnowledgeNodeRegistry, RelationRegistry, ClaimIntentBundle, SourceGapReport, and graph candidates. For `coverage_first` work, also produce TopicCoverageMatrix, OmissionLedger, CoverageAuditReceipt, and publication-unit boundaries. Return `ready`, `needs_sources`, `needs_question`, or `needs_replan` to `knowledge-product-orchestrator`. `Ready` for broad-domain work requires a current passing coverage audit and must distinguish `coverage_verified` from `coverage_local_verified`. Zotero owns structural and factual source admission, Notion owns prose, and Obsidian owns final graph selection.
+Internally produce FrameworkSpec, ContainerRegistry, KnowledgeNodeRegistry, RelationRegistry, ClaimIntentBundle, SourceGapReport, and graph candidates. For `coverage_first` work, also produce TopicCoverageMatrix, OmissionLedger, and CoverageAuditReceipt. For `large_publication` work, expose the complete traceable framework input needed by `large-publication-architect` without deciding its teaching-topic, DraftPacket, paragraph, or visible-heading boundaries. Return `ready`, `needs_sources`, `needs_question`, or `needs_replan` to `knowledge-product-orchestrator`. `Ready` for broad-domain work requires a current passing coverage audit and must distinguish `coverage_verified` from `coverage_local_verified`. Zotero owns structural and factual source admission, the Architect owns the full-book chapter-to-knowledge map, Notion owns prose, and Obsidian owns final graph selection.

@@ -53,6 +53,12 @@ A narrowing or exclusion requires an explicit user statement or named governing 
 
 When a coverage-first trigger is present, emit a CoverageProfile containing the genre, breadth, depth policy, structural-source state, and current coverage confidence. If authoritative structural sources are still needed, recommend `zotero-source-gate` before requirement reconstruction.
 
+## Large-Publication Signal
+
+Treat publication scale as independent from domain breadth. Record a `large_publication` routing signal and its evidence in the IntentContract when the user explicitly requests roughly 100,000 or more words or characters, when the work clearly requires multiple reliable drafting units, or when an existing long publication is materially incomplete, shallow, or disconnected. A narrow monograph can be large without being `coverage_first`, and a broad overview can be `coverage_first` without requiring the large-publication path.
+
+Preserve explicit requested topics, mechanisms, examples, relations, and depth expectations as anchored intent. Do not collapse a long topic list into generic categories merely to make the brief shorter. Publication construction and learner validation are separate: unless the user explicitly requests an interactive chapter-unlock course, record exercises as non-blocking for publication.
+
 ## Capability Hint
 
 Compare the confirmed outcome with active project capabilities. Report a capability-gap hint only when a missing specialized method, standard, validation protocol, format, or tool could affect an acceptance test. Do not search GitHub or ask Q5.

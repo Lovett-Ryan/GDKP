@@ -1,6 +1,6 @@
 # Obsidian Knowledge Graph Policy
 
-GDKP V1.0 creates one curated project knowledge graph: one semantic graph presented through Obsidian's native Global Graph and Local Graph. It does not generate separate macro/local graph ontologies or map files by default.
+GDKP v1.1.0 creates one curated project knowledge graph: one semantic graph presented through Obsidian's native Global Graph and Local Graph. It does not generate separate macro/local graph ontologies or map files by default.
 
 ## Purpose
 
@@ -22,7 +22,7 @@ Obsidian/
 
 Visible folder names may adapt to the subject. `.gdkp/` is hidden machine state.
 
-The stored binding, filesystem target, and any connected Obsidian MCP must resolve to the same Vault before connector-backed verification. If an MCP reports another Vault, treat it as unavailable for this project and do not touch that Vault.
+The stored binding, filesystem target, and any connected Obsidian MCP must resolve to the same Vault before a connector-backed write. If an MCP reports another Vault, treat it as unavailable for this project and do not touch that Vault.
 
 ## Node Selection
 
@@ -31,7 +31,7 @@ Include a concept only when all of the following are true:
 1. it is concrete and independently meaningful;
 2. it is important to the project's learning or product reasoning;
 3. it is reusable beyond one sentence or isolated fact;
-4. its note can be supported by verified Notion publication content.
+4. its note can be supported by source-audited published Notion content.
 
 A concept may remain isolated or belong to a disconnected component. Connectivity is an outcome of justified relations, not an admission requirement.
 
@@ -81,17 +81,17 @@ When the active Vault configuration is workflow-owned:
 
 Native Graph does not support arbitrary per-node sizing by importance. Never fabricate relations to manipulate size; exact manual sizing requires a separately authorized plugin or custom styling.
 
-The internal GraphPlan records selected concepts, supported relationships, Notion revision lineage, exclusions, and conflict handling. It is generated and validated by AI; it is not a user approval document. The KnowledgeGraphManifest records the verified files and edges after write-back.
+The internal GraphPlan records selected concepts, supported relationships, Notion revision lineage, exclusions, and conflict handling. It is generated once before writing; it is not a user approval document. The KnowledgeGraphManifest records intended files and edges, lineage, write results, exclusions, and conflicts.
 
 ## Refresh Rules
 
 - Refresh after relevant Notion publication changes.
-- Treat every newer verified Notion publication revision as invalidating the prior Obsidian projection until refresh and read-back succeed.
+- Treat every newer source-audited Notion publication revision as making the prior Obsidian projection outdated until the current scoped write succeeds.
 - Re-evaluate whether each node and edge still earns inclusion; do not only append.
 - Preserve user-authored notes and user-edited regions.
 - Keep accepted external increments out of ordinary graph notes when their `origin_status` remains `external_pending` or `external_accepted`, unless the user explicitly promotes them later.
 - On managed-file conflict, do not overwrite silently. Preserve the current file and report the specific conflict in Codex.
 
-Verification requires the actual unique Wikilink edge set to match the GraphPlan, every target and current Notion backlink to resolve, and any managed Graph settings to be read back. Filesystem-only validation is not application verification when the bound app or MCP points at another Vault.
+After a successful scoped write, record the returned operation result and stop. Do not reread notes, recount nodes or edges, resolve every Wikilink, compare written files with GraphPlan, or audit native Graph settings. A reported write error or managed-file conflict remains actionable; the actual Vault and native graph are the user review surface.
 
 The actual Vault and native graph are the user review surface. Feedback produces a new graph revision without a separate schema or preview approval.

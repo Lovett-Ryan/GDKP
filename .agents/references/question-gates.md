@@ -33,6 +33,8 @@ If the user says they want comprehensive awareness but mastery of only selected 
 
 A user-specified source named during intake is pre-authorized for project registration. The answer internally produces an IntentContract and SourcePolicy; those files are not shown for approval.
 
+When the user clearly requests a very large publication or reports that an existing long work is shallow or disconnected, record the large-publication signal without adding a separate routing question. Do not ask the user to approve DraftPackets, checkpoints, technical batches, or routine continuation after the first chapter. A complete full-book chapter-to-knowledge map is an additional decision point only when the user explicitly reserved its confirmation.
+
 ### Supplemental source shortlist
 
 `zotero-source-gate` asks once only when Codex proposes additional concrete sources. Present a concise list containing the title, source type or publisher, why it is useful, and any material limitation. Ask whether to use all, a stated subset, or none.

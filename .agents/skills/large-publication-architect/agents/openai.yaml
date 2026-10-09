@@ -1,0 +1,4 @@
+interface:
+  display_name: "GDKP-Large Publication Architect"
+  short_description: "Design large books and review drafts once"
+  default_prompt: "Use $large-publication-architect to design or revise a complete large-book knowledge map and, when routed, perform one bounded pre-publication semantic draft review without post-write audits."

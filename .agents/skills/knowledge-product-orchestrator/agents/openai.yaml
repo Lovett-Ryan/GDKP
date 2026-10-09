@@ -1,4 +1,4 @@
 interface:
   display_name: "GDKP-Knowledge Product Orchestrator"
-  short_description: "Run goal-driven and coverage-first knowledge workflows"
-  default_prompt: "Use $knowledge-product-orchestrator to run or resume this GDKP project, applying coverage-first routing when the scope is broad."
+  short_description: "Run coverage-first and large-publication workflows"
+  default_prompt: "Use $knowledge-product-orchestrator to run or resume this GDKP project, applying coverage-first routing, scale-isolated large-publication drafting, one bounded pre-publication semantic review for large units, Zotero factual audit, and no post-write Notion or Obsidian audits."

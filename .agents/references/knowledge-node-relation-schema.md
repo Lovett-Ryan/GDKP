@@ -22,6 +22,8 @@ A good node:
 
 Do not create nodes for empty headings, source titles, authors, tasks, validation states, metadata, or broad field names used only as organizational labels.
 
+A KnowledgeNode is not a publication boundary. Do not infer that one node requires one chapter, heading, paragraph, or model call. A large-publication architect may group several related nodes into one teaching topic or expand one complex node across several topics and hidden DraftPackets while preserving every included content obligation.
+
 ## Hierarchy Versus Graph
 
 Notion may contain every necessary chapter and subchapter. Obsidian should include only the subset of KnowledgeNodes whose presence improves understanding or recall. Therefore:
@@ -59,7 +61,7 @@ A relation is eligible when:
 1. both endpoints are concrete nodes;
 2. the direction and meaning can be stated in one or two clear sentences;
 3. the relationship is important to the project goal;
-4. its factual basis is supported by admitted evidence or verified Notion content;
+4. its factual basis is supported by admitted evidence or source-audited published Notion content;
 5. it is not a redundant transitive shortcut unless the direct link adds a distinct useful meaning.
 
 Reject relations inferred only from proximity, shared keywords, shared citations, generic similarity, or model confidence.
@@ -67,6 +69,8 @@ Reject relations inferred only from proximity, shared keywords, shared citations
 ## Relationship Content in Notion
 
 When a relation is educationally important, Notion must contain a complete explanation in the most relevant chapter. It may appear as ordinary prose, a subsection, a comparison table, an example, or a toggle. The visible content never uses relation IDs or schema labels.
+
+For a large publication, assign the relationship explanation to a teaching topic and bounded DraftPacket context without exposing those machine boundaries. A link, neighboring headings, or entries in RelationRegistry do not prove that the relation was explained in prose.
 
 ## Graph Selection
 

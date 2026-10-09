@@ -20,7 +20,7 @@ Require distinct current and target ProjectContexts, a current Goal, a Framework
 1. Validate the target knowledge base, source policy, managed boundaries, and node and relation revisions.
 2. Ask Framework to reserve any missing node, relation, or placement through the orchestrator.
 3. Ask Zotero Source Gate to admit evidence under the target policy when needed.
-4. Ask Notion Author to prepare the reader-facing addition and internal claim audit cycle.
+4. Ask Notion Author to prepare the reader-facing addition and route its final fact-bearing wording through the Zotero claim audit.
 5. Determine the conservative graph effect and external-increment exclusion.
 6. Present Q4 in Codex as a short readable summary: target topic, proposed addition, why it belongs, source lineage, graph impact, marker, and decline option.
 7. Do not present nested YAML, a machine diff, claim records, operation receipts, or page previews.
@@ -29,7 +29,7 @@ On decline, leave the target unchanged and record `optional_declined`. On approv
 
 ## Reconciliation
 
-After Codex dispatches Lifecycle, Framework, Zotero, Notion, and Obsidian work, verify target identity, source admission, published marker, managed boundaries, graph exclusion, and read-back receipts. Report completion only when all required owners have verified their results.
+After Codex dispatches Lifecycle, Framework, Zotero, Notion, and Obsidian work, confirm target identity, Zotero source admission and claim-audit state, managed boundaries, successful Notion and Obsidian write results, and graph exclusion policy. Do not request Notion or Obsidian content read-back receipts. Report completion only when all required owners have returned their results.
 
 Use the visible default marker `※ External Increment` at the smallest suitable Notion topic. Keep the addition out of the ordinary Obsidian graph while its internal origin status is pending or accepted. Do not invent an automatic promotion policy.
 

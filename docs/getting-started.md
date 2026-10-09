@@ -9,13 +9,13 @@
 - [PyYAML](https://pyyaml.org/) for bundle and handoff validation.
 - Access to Zotero, Notion, and Obsidian when the selected workflow uses those surfaces.
 
-GDKP does not install or authenticate external application connectors. Full publication and graph verification require Codex to have readable and writable access to the intended external targets.
+GDKP does not install or authenticate external application connectors. Publication and graph writes require Codex to have writable access and a resolvable identity for the intended external targets.
 
 ## How Codex Discovers GDKP
 
 Codex scans `.agents/skills/` from the current working directory up to the repository root. GDKP therefore installs the complete bundle under the target project's `.agents/` directory.
 
-The 13 skills share contracts and deterministic helpers. Install the bundle as a unit rather than copying an individual skill folder.
+The 14 skills share contracts and deterministic helpers. Install the bundle as a unit rather than copying an individual skill folder.
 
 ## Install
 
@@ -30,7 +30,7 @@ For a target project that does not already contain `.agents/`, run:
 ```bash
 python3 gdkp/.agents/scripts/package_core_bundle.py \
   /path/to/your-project/.agents \
-  --source-id GDKP-v1.0.0
+  --source-id GDKP-v1.1.0
 ```
 
 The packager:
@@ -65,6 +65,8 @@ Use [required inputs or standards] and keep [decisions] under my control.
 ```
 
 Codex can also select a skill implicitly when a request clearly matches its description, but explicit invocation is the clearest entry point for an end-to-end project.
+
+For a 100,000-word textbook, multi-part monograph, or an existing draft that is broad but shallow, use the same orchestrator entry point and state the intended scale and depth. GDKP will route the request through `large-publication-architect`, build the complete chapter-to-knowledge map before prose, and continue through all internal `DraftPacket`s without treating chapter one or an exercise as a stopping point.
 
 ## Resume a Project
 

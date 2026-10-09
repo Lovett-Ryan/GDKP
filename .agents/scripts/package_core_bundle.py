@@ -14,7 +14,7 @@ import sys
 import tempfile
 
 
-BUNDLE_VERSION = "1.0.0"
+BUNDLE_VERSION = "1.1.0"
 COPY_DIRECTORIES = ("skills", "references", "scripts")
 
 

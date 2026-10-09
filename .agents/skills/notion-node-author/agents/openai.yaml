@@ -1,4 +1,4 @@
 interface:
   display_name: "GDKP-Notion Textbook Author"
-  short_description: "Publish complete auditable textbook units in Notion"
-  default_prompt: "Use $notion-node-author to write or revise complete reader-facing Notion publication units without losing global coverage."
+  short_description: "Review once, source-audit, and publish Notion units"
+  default_prompt: "Use $notion-node-author to write or revise complete reader-facing Notion units or bounded DraftPackets without losing mapped knowledge."

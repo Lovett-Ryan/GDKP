@@ -9,7 +9,7 @@ Make Zotero the evidence gate for formal knowledge and externally grounded produ
 
 ## Required Contracts
 
-Read [workflow-contracts.md](../../references/workflow-contracts.md) before handoff. Read [curriculum-coverage-policy.md](../../references/curriculum-coverage-policy.md) before structural-source work. Read [zotero-item-normalization.md](../../references/zotero-item-normalization.md) before matching or writing items. Read [claim-evidence-contract.md](../../references/claim-evidence-contract.md) before evidence or claim auditing. Read [question-gates.md](../../references/question-gates.md) before a supplemental shortlist. Read [citation-and-embed-policy.md](../../references/citation-and-embed-policy.md) for citation-ready output.
+Read [workflow-contracts.md](../../references/workflow-contracts.md) before handoff. Read [large-publication-state-contract.md](../../references/large-publication-state-contract.md) for a `large_publication` claim audit. Read [curriculum-coverage-policy.md](../../references/curriculum-coverage-policy.md) before structural-source work. Read [zotero-item-normalization.md](../../references/zotero-item-normalization.md) before matching or writing items. Read [claim-evidence-contract.md](../../references/claim-evidence-contract.md) before evidence or claim auditing. Read [question-gates.md](../../references/question-gates.md) before a supplemental shortlist. Read [citation-and-embed-policy.md](../../references/citation-and-embed-policy.md) for citation-ready output.
 
 ## Preconditions
 
@@ -47,9 +47,9 @@ A search snippet or AI summary is never evidence. Preserve user priority separat
 
 ## Claim Audit
 
-Audit the complete exact DraftClaimSet against its immutable EvidencePack. Classify claims as direct, partial, contradictory, or unsupported. A partial claim passes only when the published wording carries the necessary qualification. Return unsupported or contradictory wording to Notion Author through the orchestrator.
+Audit the complete exact DraftClaimSet against its immutable EvidencePack in a dedicated source-gate execution. Resolve every EvidenceUnit to a concrete source or Zotero item identity, structured passage/table/figure/equation locator, exact supported claim IDs, support scope, content fingerprint, accessibility state, and conflict status. Recompute the EvidencePack checksum from canonical content. Inspect the exact claim against those locators and record a concise `support_assessment`; matching IDs, citation presence, or a chapter-level source summary cannot establish support. Classify claims as direct, partial, contradictory, or unsupported. A partial claim passes only when the published wording carries the necessary qualification. Return unsupported or contradictory wording to Notion Author through the orchestrator.
 
-Bind a passing ClaimAuditReceipt to the draft hash, source and evidence revisions, claim IDs, and caveats. Keep the EvidencePack, DraftClaimSet, audit detail, hashes, and receipt internal. Do not ask the user to approve them.
+Bind a passing ClaimAuditReceipt to the draft hash, source and evidence revisions, claim IDs, exact EvidenceUnit IDs, support assessments, and caveats. Before returning a passing receipt, run [validate_claim_audit.py](../../scripts/validate_claim_audit.py) with `--receipt` and the exact `--evidence-pack`. The script validates structure and bindings only; it never generates claim results or substitutes for source inspection. For every distinct source used by a passing claim, also return citation-ready Zotero metadata to Notion Author: concrete source identity, item type, creators, title, container or publisher, year, edition or version, volume, issue, pages, DOI, and original URL when available. Omit unknown fields rather than inventing them. Keep the EvidencePack, DraftClaimSet, citation-source metadata, audit detail, hashes, and receipt internal. Do not ask the user to approve them.
 
 ## Product Evidence
 
@@ -65,4 +65,4 @@ Support product tasks when their standards, recommendations, compatibility, safe
 - Do not represent an inspected or merely proposed structural source as an admitted CoverageBaseline. The `local_files_verified` exception requires an exact authorized file plus identity, digest, extraction, and read-back verification.
 - Do not treat structural prominence as proof of a factual claim.
 
-Internally produce CandidateManifest when needed, CoverageBaseline for coverage-first work, source decision record, verified Zotero operations, SourceAuditReport, EvidencePack, and ClaimAuditReceipt. Return them to `knowledge-product-orchestrator`; the user sees only the supplemental shortlist, a readable framework decision, or a material source problem.
+Internally produce CandidateManifest when needed, CoverageBaseline for coverage-first work, source decision record, verified Zotero operations, SourceAuditReport, EvidencePack, ClaimAuditReceipt, and a citation-ready source set for the passing claims. Return them to `knowledge-product-orchestrator`; the user sees only the supplemental shortlist, a readable framework decision, or a material source problem.

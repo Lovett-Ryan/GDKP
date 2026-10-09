@@ -61,7 +61,7 @@ After Q4 approval, Codex schedules the owning Skills in order:
 1. Lifecycle validates the target project and managed scope.
 2. Framework reserves the node and relation changes.
 3. Zotero registers and audits evidence under the target policy.
-4. Notion Author publishes and verifies the marked passage.
+4. Notion Author publishes the source-audited marked passage once and records the successful write result without a post-write content audit.
 5. Obsidian refreshes the graph conservatively and honors exclusion rules.
 
 Evolution skill plans and reconciles this work but does not write the three applications itself. Reversible in-scope writes proceed under Q4 authorization without separate technical previews. Any destructive, ambiguous, out-of-scope, or user-content-overwriting step requires a new direct decision.

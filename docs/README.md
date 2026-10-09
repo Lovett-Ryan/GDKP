@@ -9,8 +9,8 @@ The root README is intentionally concise. The complete project documentation is 
 | Guide | Use it for |
 |---|---|
 | [Getting Started](getting-started.md) | Installing GDKP, preparing integrations, starting a project, and resuming work |
-| [Architecture](architecture.md) | Understanding the five surfaces, end-to-end workflow, coverage-first branch, and project layout |
-| [Core Skills](skills.md) | Reviewing the responsibility and boundary of each core skill |
+| [Architecture](architecture.md) | Understanding the five surfaces, end-to-end workflow, coverage-first and large-publication branches, and project layout |
+| [Core Skills](skills.md) | Reviewing the responsibility and boundary of all 14 core skills |
 | [Governance](governance.md) | Understanding question gates, safety decisions, managed-content boundaries, and limitations |
 | [Development](development.md) | Validating, packaging, versioning, and contributing to the bundle |
 

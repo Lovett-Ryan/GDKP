@@ -28,7 +28,7 @@ Normalize and record the exact Obsidian Vault path and its workflow-managed scop
 
 Choose one operation:
 
-- `init`: find any existing Kernel, stage the local layout atomically, provision or bind the defaults within confirmed scope, verify them, and checkpoint;
+- `init`: find any existing Kernel, stage the local layout atomically, provision or bind the defaults within confirmed scope, record returned native identities, and checkpoint;
 - `attach`: inventory existing objects, bind by stable identity, and preserve all user content;
 - `doctor`: perform read-only integrity and capability checks and report a concise diagnosis;
 - `resume`: continue from the latest verified checkpoint after inspecting pending operation IDs;
@@ -52,8 +52,8 @@ Ask in Codex using natural language. Never ask the user to inspect binding YAML,
 - Stable IDs and external native IDs establish identity; titles and absolute paths do not.
 - Preserve credentials outside the project.
 - Keep machine artifacts internal and do not create routine user-review reports.
-- Re-read every created or changed target before declaring it verified.
-- Distinguish `local_files_verified` from `application_verified`. Filesystem checks may prove that intended Vault files exist, but they do not prove that Obsidian loaded the bound Vault or its graph configuration.
+- Validate lifecycle bindings, native identities, paths, and returned operation results. Do not reread Notion publication content or Obsidian notes and graph settings as a publication audit.
+- Distinguish scoped filesystem write results from connector-backed write results. Neither requires a second content or graph audit after success.
 - Preserve user-authored Notion blocks and Obsidian notes.
 - Modify `.obsidian/graph.json` only when the Vault or file is workflow-owned, or when the user explicitly authorizes adoption of that setting. Preserve unrelated application preferences.
 - A project-local core snapshot is valid only when its Skill, reference, script, and manifest hashes agree.
@@ -61,6 +61,6 @@ Ask in Codex using natural language. Never ask the user to inspect binding YAML,
 
 ## Output
 
-For `doctor`, compare the stored Obsidian binding with both the resolved filesystem path and the connector-reported active Vault. Report a connector/path mismatch explicitly and keep application-dependent verification unavailable until it is corrected.
+For `doctor`, compare the stored Obsidian binding with both the resolved filesystem path and the connector-reported active Vault. Report a connector/path mismatch explicitly and keep connector-backed writes unavailable until it is corrected. This is target-safety diagnosis, not a graph-content audit.
 
 Return ProjectContext, capability state, current bindings, Skill registry state, latest checkpoint, unresolved conflicts, and a recommended next owner to `knowledge-product-orchestrator`. These are machine artifacts. The user-facing result should state only what was attached or created and any action genuinely required.
